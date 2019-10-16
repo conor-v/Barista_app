@@ -1,6 +1,7 @@
 @import './css/reset.css';
 @import './css/vars.css';
 @import './css/header.css';
+@import './css/navigatie.css';
 
 html {
   box-sizing: border-box;
@@ -18,13 +19,4 @@ html {
 body {
   font-size: 2rem;
   font-family: Georgia, Arial, Helvetica, sans-serif;
-  /* [TODOLABO]: maak gebruik van de --margin variabele */
-  padding:
-    calc(
-      (var(--margin) * 2) + 2vw
-    ); /* [TODOLABO]: fyi, dit is een voorbeeld van reduced calc test: bekijk output in gebundelde CSS */
-  /* [TODOLABO]: maak gebruik van de backgroundColor variabele */
-  background-color: var(--backgroundColor);
-  /* [TODOLABO]: maak gebruik van de textColor variabele */
-  color: var(--textColor);
 }

@@ -1,0 +1,29 @@
+.footer {
+  background-color: #212121;
+}
+
+.menu__items {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 12rem;
+}
+
+.menu__item__link {
+  text-decoration: none;
+  color: #564f4f;
+  font-family: Roboto, sans-serif;
+  text-align: center;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+
+.item__link--img {
+  width: 4rem;
+  padding-bottom: 1rem;
+}
+
+.item__paragraaf--active {
+  color: #b7b7b7;
+}
