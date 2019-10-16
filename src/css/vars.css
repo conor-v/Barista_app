@@ -1,6 +1,9 @@
 :root {
-  --backgroundColor: #eaeae9;
-  --textColor: #463636;
-  --anotherColor: #bada55;
+  --backgroundColor: #f9d2cb;
+  --textColor: #212121;
+  --textColor2: #9c9c9c;
+  --plusbuttonBackground: #a3f4dc;
+  --deactiveLink: #564f4f;
+  --activeLink: #b7b7b7;
   --margin: 2rem;
 }
