@@ -2,6 +2,7 @@
 @import './css/vars.css';
 @import './css/header.css';
 @import './css/pricelist.css';
+@import './css/content.css';
 @import './css/navigatie.css';
 
 html {
@@ -18,7 +19,8 @@ html {
 /*stylelint-enable*/
 
 body {
-  font-size: 1.2rem;
+  color: var(--textColor);
+  font-size: var(--small);
   font-family: Roboto, Arial, Helvetica, sans-serif;
 }
 
