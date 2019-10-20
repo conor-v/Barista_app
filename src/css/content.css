@@ -20,8 +20,10 @@
 /*PRICE CONTENT*/
 
 .orders__wrapper {
-  display: grid;
-  grid-template-rows: minmax(18rem, 2fr);
+  display: flex;
+  justify-content: space-between;
+  flex-flow: column;
+  height: 94.5%;
 }
 
 /*item css*/
