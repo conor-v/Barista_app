@@ -43,6 +43,7 @@ body {
   .prices__list {
     grid-template-columns: 1fr;
     margin-bottom: 4rem;
+    grid-gap: 5rem;
   }
 
   .prices::after {
