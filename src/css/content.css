@@ -1,14 +1,8 @@
-.content {
-  width: 85%;
-  margin: 3rem auto;
-}
 
 .title_mini {
   text-transform: uppercase;
-}
-
-.hide {
-  display: none;
+  width: 92%;
+  margin: 2rem auto 0;
 }
 
 /*EMPTY CONTENT*/
@@ -24,3 +18,48 @@
   margin-top: 2rem;
 }
 /*PRICE CONTENT*/
+
+.orders__wrapper {
+  display: grid;
+  grid-template-rows: minmax(18rem, 2fr);
+}
+
+/*item css*/
+
+.order {
+  border-bottom: .1rem solid #efefef;
+  padding: 1rem 1.8rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.order__name, .order__price {
+  font-size: var(--medium);
+}
+
+.order__amount {
+  color: var(--backgroundColor);
+}
+
+.remove {
+  border: none;
+  background: none;
+  color: gray;
+  font-size: var(--medium);
+}
+
+.total {
+  border-top: .1rem solid #efefef;
+  padding: 1.8rem;
+  background-color: #fafafa;
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--medium);
+}
+
+/*hide*/
+
+.hide {
+  display: none;
+}
