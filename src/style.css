@@ -1,6 +1,7 @@
 @import './css/reset.css';
 @import './css/vars.css';
 @import './css/header.css';
+@import './css/pricelist.css';
 @import './css/navigatie.css';
 
 html {
@@ -19,4 +20,8 @@ html {
 body {
   font-size: 1.2rem;
   font-family: Roboto, Arial, Helvetica, sans-serif;
+}
+
+.highlight {
+  background-color: var(--backgroundColor);
 }
