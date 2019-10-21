@@ -5,10 +5,15 @@ import data from './assets/data/coffees.json';
   const init = () => {
     getCoffees(data);
 
+    const $menuItems = Array.from(document.getElementsByClassName(`price`));
+    for (let i = 0;i < $menuItems.length;i ++) {
+      $menuItems[i].addEventListener('click', addOrder($menuItems[i]));
+      console.log($menuItems[i].getAttribute('data_id'));
+    }
+
     const $orderItem = document.querySelector(`.order`);
     const $ordersList = document.querySelector(`.orders`).contains($orderItem);
     toggleContent($ordersList);
-
   };
 
   const getCoffees = data => {
@@ -25,9 +30,9 @@ import data from './assets/data/coffees.json';
 
     const $li = document.createElement(`li`);
     $li.classList.add(`price`);
-    $lijst.appendChild($li);
-
+    $li.setAttribute(`data_id`, `${coffee.id}`);
     $li.innerHTML = opbouw(coffee);
+    $lijst.appendChild($li);
   };
 
   const opbouw = data => {
@@ -49,15 +54,43 @@ import data from './assets/data/coffees.json';
     const $empty = document.querySelector(`.emptystate`);
     const $notEmpty = document.querySelector(`.orders__wrapper`);
 
+    console.log(ulInfo);
+
     if (ulInfo === false) {
       $empty.classList.remove(`hide`);
       $notEmpty.classList.add(`hide`);
-    }
-    if (ulInfo === true) {
+    } else {
       $empty.classList.add(`hide`);
       $notEmpty.classList.remove(`hide`);
     }
   };
 
+  const addOrder = data => {
+    /*const $notEmpty = document.querySelector(`.orders`);
+
+    const $li = document.createElement(`li`);
+    $li.classList.add(`order`);
+    $li.innerHTML = `
+    <span class="order__name">
+      <span class="order__amount">{amount} x</span> {drink.name}
+    </span>
+    <span class="order__price">&euro; {total}
+      <button class="remove">
+        x
+      </button>
+    </span>`;
+    $notEmpty.appendChild($li);*/
+  };
+
+  /* DELETE FUNCTIE VOOR ORDERS
+    const deleteItem = () => {
+      const confirmationLinks = Array.from(document.getElementsByClassName(`delete`));
+      confirmationLinks.forEach($confirmationLink => {
+        $confirmationLink.addEventListener(`click`, e => {
+          if (!confirm('Ben je zeker dat je dit wilt verwijderen?')) e.preventDefault();
+        });
+      });
+    };
+  */
   init();
 }
