@@ -5,11 +5,12 @@ import data from './assets/data/coffees.json';
   const init = () => {
     getCoffees(data);
 
-    const $menuItems = Array.from(document.getElementsByClassName(`price`));
-    for (let i = 0;i < $menuItems.length;i ++) {
-      $menuItems[i].addEventListener('click', addOrder($menuItems[i]));
-      console.log($menuItems[i].getAttribute('data_id'));
-    }
+    const $items = document.querySelectorAll(`.price`);
+    $items.forEach(function($item) {
+      $item.addEventListener(`click`, e => {
+        addOrder(e.composedPath()[2]);
+      });
+    });
 
     const $orderItem = document.querySelector(`.order`);
     const $ordersList = document.querySelector(`.orders`).contains($orderItem);
@@ -19,6 +20,7 @@ import data from './assets/data/coffees.json';
   const getCoffees = data => {
     const coffees = data.coffees;
     coffees.forEach(coffee => {
+
       if (coffee.plantbased === true) {
         makeCoffee(coffee);
       }
@@ -50,47 +52,44 @@ import data from './assets/data/coffees.json';
     return num.toFixed(2);
   };
 
+  const addOrder = e => {
+    const num = e.getAttribute('data_id');
+    console.log(num);
+    const naam = document.querySelector(`.price:nth-child(${num}n) .price__button__name`).innerHTML;
+    const prijs = document.querySelector(`.price:nth-child(${num}n) .price__button__amount`).innerHTML;
+    console.log(naam);
+    console.log(prijs);
+    const $orders = document.querySelector(`.orders`);
+
+    const $li = document.createElement(`li`);
+    $li.classList.add(`order`);
+    $li.innerHTML = `
+      <span class="order__name">
+        <span class="order__amount">1x</span> ${naam}
+      </span>
+      <span class="order__price">${prijs}
+        <button class="remove">
+          x
+        </button>
+      </span>`;
+    $orders.appendChild($li);
+  };
+
   const toggleContent = ulInfo => {
     const $empty = document.querySelector(`.emptystate`);
     const $notEmpty = document.querySelector(`.orders__wrapper`);
 
     console.log(ulInfo);
 
-    if (ulInfo === false) {
-      $empty.classList.remove(`hide`);
-      $notEmpty.classList.add(`hide`);
-    } else {
+    if (ulInfo === true) {
       $empty.classList.add(`hide`);
       $notEmpty.classList.remove(`hide`);
     }
+    if (ulInfo === false) {
+      $empty.classList.remove(`hide`);
+      $notEmpty.classList.add(`hide`);
+    }
   };
 
-  const addOrder = data => {
-    /*const $notEmpty = document.querySelector(`.orders`);
-
-    const $li = document.createElement(`li`);
-    $li.classList.add(`order`);
-    $li.innerHTML = `
-    <span class="order__name">
-      <span class="order__amount">{amount} x</span> {drink.name}
-    </span>
-    <span class="order__price">&euro; {total}
-      <button class="remove">
-        x
-      </button>
-    </span>`;
-    $notEmpty.appendChild($li);*/
-  };
-
-  /* DELETE FUNCTIE VOOR ORDERS
-    const deleteItem = () => {
-      const confirmationLinks = Array.from(document.getElementsByClassName(`delete`));
-      confirmationLinks.forEach($confirmationLink => {
-        $confirmationLink.addEventListener(`click`, e => {
-          if (!confirm('Ben je zeker dat je dit wilt verwijderen?')) e.preventDefault();
-        });
-      });
-    };
-  */
   init();
 }
