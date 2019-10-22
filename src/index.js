@@ -11,10 +11,6 @@ import data from './assets/data/coffees.json';
         addOrder(e.composedPath()[2]);
       });
     });
-
-    const $orderItem = document.querySelector(`.order`);
-    const $ordersList = document.querySelector(`.orders`).contains($orderItem);
-    toggleContent($ordersList);
   };
 
   const getCoffees = data => {
@@ -54,12 +50,9 @@ import data from './assets/data/coffees.json';
 
   const addOrder = e => {
     const num = e.getAttribute('data_id');
-    console.log(num);
     const naam = document.querySelector(`.price:nth-child(${num}n) .price__button__name`).innerHTML;
     const prijs = document.querySelector(`.price:nth-child(${num}n) .price__button__amount`).innerHTML;
-    console.log(naam);
-    console.log(prijs);
-    const $orders = document.querySelector(`.orders`);
+    const $list = document.querySelector(`.orders`);
 
     const $li = document.createElement(`li`);
     $li.classList.add(`order`);
@@ -72,14 +65,19 @@ import data from './assets/data/coffees.json';
           x
         </button>
       </span>`;
-    $orders.appendChild($li);
+    $list.appendChild($li);
+
+    const $orderItem = document.querySelector(`.order`);
+    const $ordersList = document.querySelector(`.orders`).contains($orderItem);
+    toggleContent($ordersList);
+
+    const $orders = document.querySelectorAll(`.order__price`);
+    totaal($orders);
   };
 
   const toggleContent = ulInfo => {
     const $empty = document.querySelector(`.emptystate`);
     const $notEmpty = document.querySelector(`.orders__wrapper`);
-
-    console.log(ulInfo);
 
     if (ulInfo === true) {
       $empty.classList.add(`hide`);
@@ -89,6 +87,20 @@ import data from './assets/data/coffees.json';
       $empty.classList.remove(`hide`);
       $notEmpty.classList.add(`hide`);
     }
+  };
+
+  const totaal = orders => {
+    const $totaalBedrag = document.querySelector(`.totaalBedrag`);
+    let resTotaal = 0;
+    orders.forEach(function(order) {
+      const str = order.textContent;
+      const res = parseFloat(str.substr(2, 5));
+
+      resTotaal += res;
+
+      console.log(resTotaal);
+      $totaalBedrag.innerHTML = round(resTotaal);
+    });
   };
 
   init();
