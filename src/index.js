@@ -6,7 +6,7 @@ import data from './assets/data/coffees.json';
     getCoffees(data);
 
     const $items = document.querySelectorAll(`.price`);
-    $items.forEach(function($item) {
+    $items.forEach($item => {
       $item.addEventListener(`click`, e => {
         addOrder(e.composedPath()[2]);
       });
@@ -55,6 +55,7 @@ import data from './assets/data/coffees.json';
     const $list = document.querySelector(`.orders`);
 
     const $li = document.createElement(`li`);
+    $li.setAttribute(`data_id`, `${num}`);
     $li.classList.add(`order`);
     $li.innerHTML = `
       <span class="order__name">
@@ -73,6 +74,13 @@ import data from './assets/data/coffees.json';
 
     const $orders = document.querySelectorAll(`.order__price`);
     totaal($orders);
+
+    const $delete = document.querySelectorAll(`.remove`);
+    $delete.forEach($x => {
+      $x.addEventListener(`click`, e => {
+        deleteOrder(e.composedPath()[2]);
+      });
+    });
   };
 
   const toggleContent = ulInfo => {
@@ -101,6 +109,14 @@ import data from './assets/data/coffees.json';
       console.log(resTotaal);
       $totaalBedrag.innerHTML = round(resTotaal);
     });
+  };
+
+  const deleteOrder = e => {
+    const num = e.getAttribute('data_id');
+    const $item = document.querySelector(`.order:nth-child(${num}n)`);
+    const $list = document.querySelector(`.orders`);
+    console.log($item);
+    $list.removeChild($item);
   };
 
   init();
